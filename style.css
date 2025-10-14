@@ -1,0 +1,91 @@
+/* Style umum */
+body {
+  margin: 0;
+  padding:10px;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #343636;
+  color: white;
+  line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 15px 60px;
+  position: fixed;
+  top: 0;
+  width: 90%;
+  z-index: 100;
+  backdrop-filter: blur(80px);
+}
+
+.logo {
+  margin-right: auto;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: white;
+}
+
+.nav-links {
+  text-decoration: underline;
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #c180d3;
+}
+
+/* Hero section */
+.hero {
+  /* text-align: center; */
+  padding: 160px 20px 100px;
+}
+
+.hero h1 {
+  font-size: em;
+  margin-bottom: 20px;
+}
+
+section {
+  padding: 40px 20px;
+  max-width: 95%;
+  margin: auto;
+}
+
+h2 {
+  text-align: right;
+  color: #c180d3;
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+.project {
+  background: #4d444f;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.project a {
+  color: #c180d3;
+  text-decoration: underline;
+  font-weight: bold;
+}
