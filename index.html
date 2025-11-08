@@ -4,63 +4,67 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Anya's Porto</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <nav class="navbar">
-      <h1 class="logo">Anya Callissta <br>Chriswantari</h1>
+    <nav class="navbar">      
+      <h1 class="logo">ANYA CALLISSTA</h1>
       <ul class="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About Me</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+        <li><a href="index.html" class="nav-item active">Home</a></li>
+        <li><a href="about.html" class="nav-item">About Me</a></li>
+        <li><a href="projects.html" class="nav-item">Projects</a></li>
+      </ul>
     </nav>
-    
-    <div class="hero">
-  </div>
-</header>
+  </header>
 
-
-  <section id="about">
-    <h2>About Me</h2>
-    <p>
-      I am a Informatic Engineering student with an interest in information system development,
-      database design, and web programming. I enjoy learning about new technologies
-      and applying them in small projects.
-    </p>
-  </section>
-
-  <section id="projects">
-    <h2>Projetcs</h2>
-
-    <div class="project">
-      <h3>SiTatib POLINEMA- Sistem Tata Tertib Kampus</h3>
-      <h5>Dec. 2024</h5>
-      <a href="https://github.com/anyacallissta/tatib" target="_blank">GitHub</a>
-      <a href="https://www.figma.com/design/kqkALHHHQzsLHbemo2o5kc/PBL-TATIB?node-id=139-170&t=eb0qAD46jYKG3j6f-1" target="_blank">Figma</a>
-    </div>
-
-    <div class="project">
-      <h3>SiLaprak - Sistem Manajemen Pelaporan dan Perbaikan Fasilitas Kampus</h3>
-      <h5>Jun. 2025</h5>
-      <a href="https://github.com/anyacallissta/pbl-sarpras" target="_blank">GitHub</a>
-    </div>
-
-    <div class="project">
-      <h3>Website Portofolio Pribadi</h3>
-      <h5>Oct. 2025</h5>
-      <a href="https://anyacallissta.github.io/portofolio/" target="_blank">Click Me</a>
-    </div>
+  <section id="home">
+    <h1 id="typing-text"></h1>
   </section>
 
   <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:anya.callissta@gmail.com">anya.callissta@gmail.com</a></p>
-    <p>GitHub: <a href="https://github.com/anyacallissta" target="_blank">github.com/anyacallissta</a></p>
-    <p>LinkedIn: <a href="https://linkedin.com/in/anyacallissta" target="_blank">linkedin.com/in/anyacallissta</a></p>
+    <a href="https://github.com/anyacallissta" target="_blank"><i class="fa-brands fa-github"></i></a>
+    <a href="https://linkedin.com/in/anyacallissta" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+    <a href="mailto:anya.callissta@gmail.com"><i class="fa-solid fa-envelope"></i></a>
   </section>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    console.log("js in index.html!");
+
+    const text = "Where Logic Meets Creativity, Magic Happens.<br>Web Dev & Tech Enthusiast | Lifelong Learner";
+    // const text = "Selamat datang di situs web saya!<br>Saya seorang pengembang web dan penggemar teknologi.<br>Jelajahi karya saya dan mari kita ciptakan sesuatu yang luar biasa bersama! <br>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+    let index = 0;
+
+    function typeEffect() {
+      const target = document.getElementById("typing-text");
+      if (index < text.length) {
+        // cek apakah karakter berikutnya adalah tag HTML (<br>)
+        if (text.slice(index, index + 4) === "<br>") {
+          target.innerHTML += "<br>"; // tambahkan baris baru
+          index += 4; // lompat 4 karakter
+        } else {
+          target.innerHTML += text.charAt(index);
+          index++;
+        }
+        setTimeout(typeEffect, 60);
+      }
+    }
+
+    window.onload = typeEffect;
+
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+      navLinks.forEach(link => {
+      if (link.href === window.location.href) {
+          link.classList.add('active');
+      } else {
+          link.classList.remove('active');
+      }
+      });
+  });
+  </script>
 </body>
 </html>

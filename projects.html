@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anya's Porto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+    <header>
+        <nav class="navbar">      
+            <h1 class="logo">ANYA CALLISSTA</h1>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-item">Home</a></li>
+                <li><a href="about.html" class="nav-item">About Me</a></li>
+                <li><a href="projects.html" class="nav-item active">Projects</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="project">
+        <div class="project-list">
+            <h3 onclick="openModal('project1')" style="cursor: pointer;">SiTatib POLINEMA</h3>
+            <h5>Dec. 2024</h5>
+            <a href="https://github.com/feya19/tatib" target="_blank"><i class="fa-brands fa-github"></i></a>
+        </div>
+
+        <div class="project-list">
+            <h3 onclick="openModal('project2')" style="cursor: pointer;">PWL Point of Sale (POS)</h3>
+            <h5>Apr. 2024</h5>
+            <a href="https://github.com/anyacallissta/WebLanjut/tree/main/MINGGU_11" target="_blank"><i class="fa-brands fa-github"></i></a>
+        </div>
+
+        <div class="project-list">
+            <h3 onclick="openModal('project3')" style="cursor: pointer;">SiLaprak</h3>
+            <h5>Jun. 2025</h5>
+            <a href="https://github.com/IlhamFaturachman/pbl-sarpras" target="_blank"><i class="fa-brands fa-github"></i></a>
+        </div>
+    </section>
+
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title"></h2>
+            
+            <div class="modal-body">
+                <p id="modal-description"></p>                
+                <div id="modal-video" class="modal-video"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+      const projectsData = {
+          project1: {
+              title: 'SiTatib POLINEMA',
+              description: 'SiTatib is an group Project Based Learning (PBL) result from the 3rd semester. It is a web-based code of conduct system for students of Malang State Polytechnic (POLINEMA). This application aims to facilitate students in accessing, understanding, and complying with campus regulations through features such as violation notifications, interactive code of conduct guides, and a violation reporting system by lecturer. <hr> Hasil Project Based Learning (PBL) kelompok pada semester 3. Sistem tata tertib berbasis web untuk mahasiswa Politeknik Negeri Malang (POLINEMA). Aplikasi ini bertujuan untuk memudahkan mahasiswa mengakses, memahami, dan mematuhi tata tertib kampus melalui fitur-fitur seperti notifikasi pelanggaran, panduan tata tertib interaktif, dan sistem pelaporan pelanggaran oleh dosen.',
+            //   videoUrl: 'assets/SiTatib.mp4',
+          },
+          project2: {
+              title: 'PWL Point of Sale (POS)',
+              description: 'PWL Point of Sale (POS) is an individual project developed for the Advanced Web Programming course (Pemrograman Web Lanjut - PWL). This application serves as a comprehensive system for managing retail transactions, inventory, and sales reporting. Its primary goal is to provide a fast, reliable, and user-friendly interface for cashiers to process sales, manage product stock in real-time, and generate insightful financial reports for management, thereby optimizing operational efficiency. <hr> PWL Point of Sale (POS) adalah proyek individu yang dikembangkan sebagai hasil dari Mata Kuliah Pemrograman Web Lanjut (PWL). Aplikasi ini berfungsi sebagai sistem komprehensif untuk mengelola transaksi ritel, inventaris, dan pelaporan penjualan. Tujuan utamanya adalah menyediakan antarmuka yang cepat, andal, dan user-friendly bagi kasir untuk memproses penjualan, mengelola stok produk secara real-time, dan menghasilkan laporan keuangan yang mendalam untuk manajemen, sehingga mengoptimalkan efisiensi operasional.',
+              videoUrl: 'assets/PWLPOS.mp4',
+          },
+          project3: {
+              title: 'SiLaprak',
+              description: 'SiLaprak is a Group Project Based Learning (PBL) result from the 4th semester. It is a management application for reporting and repairing campus facilities and infrastructure (Sarpras). Its goal is to accelerate and simplify the workflow, starting from photo-based damage reports by users to task assignment and tracking of repair status by the technical team. <hr> Hasil Project Based Learning (PBL) kelompok pada semester 4. Sistem manajemen untuk pelaporan dan perbaikan sarana dan prasarana (Sarpras) di lingkungan kampus. Tujuannya adalah mempercepat dan mempermudah alur kerja mulai dari laporan kerusakan berbasis foto oleh pengguna hingga penugasan dan tracking status perbaikan oleh tim teknis.',
+              videoUrl: 'assets/SiLaprak.mp4',
+          }
+      };
+
+      const modal = document.getElementById('project-modal');
+      const modalTitle = document.getElementById('modal-title');
+      const modalDescription = document.getElementById('modal-description');
+      // Berhasil menemukan div penampung setelah penambahan ID di HTML
+      const modalVideo = document.getElementById('modal-video'); 
+
+      // Fungsi untuk membuat elemen <video>
+      function createVideoElement(url) {
+          // PERBAIKAN 3: Pindahkan pembersihan konten ke awal fungsi ini
+          // Ini memastikan penampung bersih sebelum video baru dimasukkan
+          modalVideo.innerHTML = ''; 
+
+          const video = document.createElement('video');
+          video.setAttribute('src', url);
+          video.setAttribute('controls', true);
+          video.setAttribute('autoplay', true);
+          video.style.width = '100%';
+          video.style.height = 'auto'; 
+          return video;
+      }
+
+      function openModal(projectId) {
+          const project = projectsData[projectId];
+          
+          if (project) {
+              modalTitle.textContent = project.title;
+              // Gunakan innerHTML untuk merender tag HTML
+              modalDescription.innerHTML = project.description; 
+
+              const newVideoElement = createVideoElement(project.videoUrl);
+              if (newVideoElement) {
+                  modalVideo.appendChild(newVideoElement);
+              }
+
+              modal.style.display = 'block';
+          }
+      }
+
+      function closeModal() {
+          modal.style.display = 'none';
+          
+          // PERBAIKAN 2: Gunakan innerHTML untuk menghentikan pemutaran
+          modalVideo.innerHTML = '';
+      }
+
+      window.onclick = function(event) {
+          if (event.target == modal) {
+              closeModal();
+          }
+      }
+  </script>
+</body>
+</html>
