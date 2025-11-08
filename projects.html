@@ -10,12 +10,12 @@
 </head>
 <body>
     <header>
-        <nav class="navbar">      
+        <nav class="navbar">
             <h1 class="logo">ANYA CALLISSTA</h1>
             <ul class="nav-links">
                 <li><a href="index.html" class="nav-item">Home</a></li>
                 <li><a href="about.html" class="nav-item">About Me</a></li>
-                <li><a href="projects.html" class="nav-item active">Projects</a></li>
+                <li><a href="projects.html" class="nav-item">Projects</a></li>
             </ul>
         </nav>
     </header>
@@ -74,13 +74,9 @@
       const modal = document.getElementById('project-modal');
       const modalTitle = document.getElementById('modal-title');
       const modalDescription = document.getElementById('modal-description');
-      // Berhasil menemukan div penampung setelah penambahan ID di HTML
       const modalVideo = document.getElementById('modal-video'); 
 
-      // Fungsi untuk membuat elemen <video>
       function createVideoElement(url) {
-          // PERBAIKAN 3: Pindahkan pembersihan konten ke awal fungsi ini
-          // Ini memastikan penampung bersih sebelum video baru dimasukkan
           modalVideo.innerHTML = ''; 
 
           const video = document.createElement('video');
@@ -97,7 +93,6 @@
           
           if (project) {
               modalTitle.textContent = project.title;
-              // Gunakan innerHTML untuk merender tag HTML
               modalDescription.innerHTML = project.description; 
 
               const newVideoElement = createVideoElement(project.videoUrl);
@@ -112,7 +107,6 @@
       function closeModal() {
           modal.style.display = 'none';
           
-          // PERBAIKAN 2: Gunakan innerHTML untuk menghentikan pemutaran
           modalVideo.innerHTML = '';
       }
 
@@ -121,6 +115,22 @@
               closeModal();
           }
       }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        const currentPath = window.location.pathname.split('/').pop() || 'index.html'; 
+
+        navLinks.forEach(link => {
+            const linkPath = link.getAttribute('href').split('/').pop();
+
+            if (linkPath === currentPath) { 
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    });
   </script>
 </body>
 </html>

@@ -13,7 +13,7 @@
     <nav class="navbar">      
       <h1 class="logo">ANYA CALLISSTA</h1>
       <ul class="nav-links">
-        <li><a href="index.html" class="nav-item active">Home</a></li>
+        <li><a href="index.html" class="nav-item">Home</a></li>
         <li><a href="about.html" class="nav-item">About Me</a></li>
         <li><a href="projects.html" class="nav-item">Projects</a></li>
       </ul>
@@ -32,39 +32,43 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-    console.log("js in index.html!");
+        console.log("js in index.html!");
 
-    const text = "Where Logic Meets Creativity, Magic Happens.<br>Web Dev & Tech Enthusiast | Lifelong Learner";
-    // const text = "Selamat datang di situs web saya!<br>Saya seorang pengembang web dan penggemar teknologi.<br>Jelajahi karya saya dan mari kita ciptakan sesuatu yang luar biasa bersama! <br>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-    let index = 0;
+        const text = "Where Logic Meets Creativity, Magic Happens.<br>Web Dev & Tech Enthusiast | Lifelong Learner";
+        let index = 0;
 
-    function typeEffect() {
-      const target = document.getElementById("typing-text");
-      if (index < text.length) {
-        // cek apakah karakter berikutnya adalah tag HTML (<br>)
-        if (text.slice(index, index + 4) === "<br>") {
-          target.innerHTML += "<br>"; // tambahkan baris baru
-          index += 4; // lompat 4 karakter
-        } else {
-          target.innerHTML += text.charAt(index);
-          index++;
+        function typeEffect() {
+            const target = document.getElementById("typing-text");
+            if (index < text.length) {
+                if (text.slice(index, index + 4) === "<br>") {
+                    target.innerHTML += "<br>";
+                    index += 4;
+                } else {
+                    target.innerHTML += text.charAt(index);
+                    index++;
+                }
+                setTimeout(typeEffect, 60);
+            }
         }
-        setTimeout(typeEffect, 60);
-      }
-    }
+        
+        window.onload = typeEffect;
+    });
 
-    window.onload = typeEffect;
+    document.addEventListener('DOMContentLoaded', function() {
+        const navLinks = document.querySelectorAll('.nav-links a');
 
-    const navLinks = document.querySelectorAll('.nav-links a');
+        const currentPath = window.location.pathname.split('/').pop() || 'index.html'; 
 
-      navLinks.forEach(link => {
-      if (link.href === window.location.href) {
-          link.classList.add('active');
-      } else {
-          link.classList.remove('active');
-      }
-      });
-  });
+        navLinks.forEach(link => {
+            const linkPath = link.getAttribute('href').split('/').pop();
+
+            if (linkPath === currentPath) { 
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    });
   </script>
 </body>
 </html>
